@@ -69,4 +69,12 @@ export class ItemListComponent implements OnInit {
     this.addItem.emit();
   }
 
+  deleteItem(item) {
+    console.log("delete function called...");
+    this.apiService.deleteItem(item.id).subscribe(
+      result => console.log(result),
+      error => console.log(error)
+    );
+  }
+
 }

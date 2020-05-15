@@ -55,6 +55,10 @@ export class ApiService {
     return this.httpClient.post(`${this.baseItemUrl}create_item/`, body, {headers: this.headers});
   }
 
+  deleteItem(id:number) {
+    return this.httpClient.delete(`${this.baseItemUrl}${id}/delete_item/`, {headers: this.headers});
+  }
+
   // , 'user':user
 
   // getUser() {
