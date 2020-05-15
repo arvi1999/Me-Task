@@ -1,0 +1,37 @@
+
+<button mat-raised-button color="warn" [ngStyle] = "{'width':'75%','margin-left':'50px'}" (click)="createTask()">Add New Task</button>
+<br><br>
+
+<mat-accordion [multi]="false" (submit)="newCategory()" class="list">
+    <mat-expansion-panel [ngStyle] = "{'width':'75%','margin-left':'50px'}">
+        <mat-expansion-panel-header>
+            <button mat-raised-button color="primary" [ngStyle] = "{'width':'90%'}">Add New Category</button>
+        </mat-expansion-panel-header>
+        <form [formGroup] = "categoryForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Category Name</mat-label>
+                <input type="text" formControlName="name" matInput>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [ngStyle] = "{'margin-left':'13px'}" type="submit" >Add</button>
+        </form>
+      </mat-expansion-panel>
+    <mat-expansion-panel *ngFor="let category of categories" [ngStyle] = "{'width':'75%','margin-left':'50px'}">
+        <mat-expansion-panel-header (click)="getItems(category.id, category.name)">
+        <mat-panel-title>
+          {{category.name}}
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <div mat-subheader>
+                <button mat-raised-button color="warn" [ngStyle] = "{'width':'47%'}">Edit Category</button>
+                <button mat-raised-button color="warn" [ngStyle] = "{'width':'47%','margin-left':'10px'}">Delete Category</button>
+            </div>
+            <mat-list-item *ngFor="let item of category_items">
+                <div mat-line (click)="itemDetails(item, item.completed)" [ngClass]="{'strikethrough':item.completed === 'Done'}"><fa-icon [icon]="faArrowRight" [ngStyle]="{'margin-right':'10px'}"></fa-icon>{{item.title}} </div>
+                    <fa-icon [icon]="faEdit" (click)="editItem(item)"></fa-icon> 
+                    <fa-icon [icon]="faTrash" [ngStyle]="{'color':'red','margin-left':'10px'}"></fa-icon>
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+</mat-accordion>    
+    

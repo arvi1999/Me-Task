@@ -1,0 +1,16 @@
+.heading {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.example-toolbar {
+    position: block;
+    z-index: 2;
+    /* position: relative; */
+    /* overflow: hidden; */
+    margin-bottom: 25px;
+}
+
+h1 {
+    text-align: center;
+}

@@ -1,0 +1,8 @@
+<div class="layout">
+    <app-item-list [categories] = "categories" (selectedItem) = 'selectItem($event)' (selectedCategory) = 'selectCategory($event)'
+        (itemStatus)='itemStatus($event)' (editedItem)="editItem($event)" (createdCategory)="createCategory($event)"
+        (addItem)="createTask()" >
+    </app-item-list>
+    <app-item-details *ngIf="selectedItem" [item] = "this.selectedItem" [category] = "this.selectedCategory" [status] = "this.itStatus" ></app-item-details>
+    <app-item-form *ngIf="editedItem" [selectedCategory] = "this.selectedCategory" [editedItem]="this.editedItem" [categories] = "categories"></app-item-form>
+</div>

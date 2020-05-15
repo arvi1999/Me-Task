@@ -1,0 +1,9 @@
+.strikethrough {
+    text-decoration: line-through;
+    color: green;
+}
+
+.list {
+    overflow:hidden; 
+    overflow-y:scroll;
+}

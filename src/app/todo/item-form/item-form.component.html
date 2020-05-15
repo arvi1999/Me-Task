@@ -1,0 +1,40 @@
+<form [formGroup] = "itemForm" (submit)="saveForm()">
+    <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input type="text" formControlName = 'title' placeholder = "title" matInput required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea type="text" formControlName = 'description' placeholder = "description" matInput required></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" >
+        <mat-label>Category</mat-label>
+        <mat-select [(value)]="cat" [disabled]="id" required >
+            <mat-option [value]="category.id" *ngFor="let category of categories">{{category.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Due Date</mat-label>
+        <input type="date" formControlName = 'due_date' placeholder = "Due Date" matInput required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+          <mat-select [(value)]="status" required>
+            <mat-option value="Done">Done</mat-option>
+            <mat-option value="Not Done">Not Done</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type = "submit" [disabled] = "formDisabled()">
+        <span *ngIf="id">Update Task</span>
+        <span *ngIf="!id">Create Task</span>
+    </button>
+</form>
+
+<!-- [disabled] = "formDisabled()" -->
+
+<!-- (submit) = "saveForm()"
+[ngStyle] = "{'width':'75%','margin-top':'50px', 'margin-left':'50px'}" -->

@@ -1,0 +1,54 @@
+<mat-card [ngStyle]="{'max-width':'700px'}">
+    <mat-card-header>
+      <fa-icon [icon]="faCheckCircle" [ngClass]="{'green':status === 'Done','red':status === 'Not Done'}"></fa-icon>
+      <mat-card-title>{{item.title}}</mat-card-title>
+      <mat-card-subtitle>Created on: {{item.created_on | date : 'mediumDate'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <div mat-line>Details: {{item.description}}</div>
+          <br>
+          <div mat-line>Category: {{category}}</div>
+          <br>
+          <div mat-line>Due Date: {{item.due_date | date : 'mediumDate'}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <mat-list>
+        <mat-list-item>
+          <div mat-line>
+            <mat-form-field [ngStyle]="{'width':'40%','margin-left':'20px'}">
+              <mat-label>Status</mat-label>
+                <mat-select [(value)]="status">
+                  <mat-option value="Done">Done</mat-option>
+                  <mat-option value="Not Done">Not Done</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [ngStyle]="{'width':'40%','margin-left':'40px'}" (click) = "changeStatus()">Update Status</button>
+            <!-- <button type="button"  data-toggle="modal" data-target="#myModal">Hello</button> -->
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-actions>
+</mat-card>
+
+
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sign-Up</h4>
+      </div>
+      <div class="modal-body">
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div> -->
