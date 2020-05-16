@@ -7,12 +7,12 @@
     <mat-divider></mat-divider>
     <mat-card-content>
       <mat-list>
-        <mat-list-item>
-          <div mat-line>Details: {{item.description}}</div>
+        <mat-list-item >
+          <div mat-line [ngStyle]="{'margin-top': '20px'}">Details: {{item.description}}</div>
           <br>
-          <div mat-line>Category: {{category}}</div>
+          <div mat-line [ngStyle]="{'margin-top': '10px'}">Category: {{category}}</div>
           <br>
-          <div mat-line>Due Date: {{item.due_date | date : 'mediumDate'}}</div>
+          <div mat-line [ngStyle]="{'margin-top': '10px', 'margin-bottom':'20px'}">Due Date: {{item.due_date | date : 'mediumDate'}}</div>
         </mat-list-item>
       </mat-list>
     </mat-card-content>
