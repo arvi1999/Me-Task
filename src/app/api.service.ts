@@ -40,6 +40,10 @@ export class ApiService {
     return this.httpClient.post(`${this.baseCategoryUrl}create_category/`, body, {headers: this.headers});
   }
 
+  deleteCategory(id:number) {
+    return this.httpClient.delete(`${this.baseCategoryUrl}${id}/delete_category/`, {headers: this.headers});
+  }
+
   updateItemStatus(id:number, completed:string) {
     const body = JSON.stringify({'completed':completed});
     return this.httpClient.put(`${this.baseItemUrl}${id}/update_status/`, body,  {headers: this.headers});
