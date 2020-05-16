@@ -1,5 +1,5 @@
 
-<button mat-raised-button color="warn" [ngStyle] = "{'width':'75%','margin-left':'50px'}" (click)="createTask()">Add New Task</button>
+<button mat-raised-button color="warn" [ngStyle] = "{'width':'75%','margin-left':'50px'}" (click)="createTask()" [disabled]="taskButton">Add New Task</button>
 <br><br>
 
 <mat-accordion [multi]="false" (submit)="newCategory()" class="list">

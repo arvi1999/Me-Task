@@ -3,6 +3,7 @@ import { ApiService } from '../../api.service';
 import { faTasks, faThumbtack, faEdit, faTrash, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, FormControlName } from '@angular/forms';
 import { compileDirectiveFromMetadata } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-list',
@@ -31,9 +32,14 @@ export class ItemListComponent implements OnInit {
     name : new FormControl('')
   });
 
+  taskButton = false;
 
 
-  constructor(private apiService:ApiService) { }
+
+  constructor(private apiService:ApiService,
+              private router: Router
+    ) { }
+
   faTasks = faTasks;
   faThumbtack = faThumbtack;
   faTrash = faTrash;
@@ -41,7 +47,6 @@ export class ItemListComponent implements OnInit {
   faArrowRight = faArrowRight;
 
   ngOnInit(): void {
-    
   }
 
   formDisable() {
@@ -54,7 +59,10 @@ export class ItemListComponent implements OnInit {
 
   newCategory() {
     this.apiService.createCategory(this.categoryForm.value.name).subscribe(
-      result => this.createdCategory.emit(result["result"]),
+      result => {
+        this.createdCategory.emit(result["result"]),
+        this.router.navigate(['/auth'])
+      },
       error => console.log(error)
     );
     this.categoryForm = new FormGroup({

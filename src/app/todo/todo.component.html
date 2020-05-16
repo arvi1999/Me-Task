@@ -1,3 +1,10 @@
+<div [ngStyle]="{'display':'inline'}">
+    <h2>Welcome, {{loggedInUser | titlecase}}</h2>
+    <button mat-raised-button color="warn" (click) = "logout()">Log Out</button>
+</div>
+<!-- <mat-divider></mat-divider> -->
+
+<br><br>
 <div class="layout">
     <app-item-list [categories] = "categories" (selectedItem) = 'selectItem($event)' (selectedCategory) = 'selectCategory($event)'
         (itemStatus)='itemStatus($event)' (editedItem)="editItem($event)" (createdCategory)="createCategory($event)"
