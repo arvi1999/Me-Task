@@ -23,6 +23,8 @@ export class TodoComponent implements OnInit {
   itStatus = null;
   editedItem = null;
 
+  loggedInUser = this.cookieService.get('login_user_name');
+
   ngOnInit(): void {
     const loginToken = this.cookieService.get('login_user_token');
     if(!loginToken) {
@@ -78,5 +80,11 @@ export class TodoComponent implements OnInit {
   createTask() {
     this.editedItem={title:'', description:'', due_date:'', category:'', status:''};
     this.selectedItem = null;
+  }
+
+  logout() {
+    this.cookieService.delete('login_user_token');
+    this.cookieService.delete('login_user_name');
+    this.router.navigate(['/auth']);
   }
 }
