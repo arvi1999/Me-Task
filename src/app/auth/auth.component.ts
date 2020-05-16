@@ -21,6 +21,10 @@ export class AuthComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    const loginToken = this.cookieService.get('login_user_token');
+    if(loginToken) {
+      this.router.navigate(['/todo'])
+    }
   }
 
   authForm = new FormGroup({

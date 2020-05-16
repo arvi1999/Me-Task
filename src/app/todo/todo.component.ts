@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -8,7 +10,10 @@ import { ApiService } from '../api.service';
 })
 export class TodoComponent implements OnInit {
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:ApiService,
+              private cookieService:CookieService,
+              private router:Router
+    ) { }
 
   categories: any = [];
   // categoryList: any = [];
@@ -19,14 +24,19 @@ export class TodoComponent implements OnInit {
   editedItem = null;
 
   ngOnInit(): void {
-    this.apiService.getCategories().subscribe(
-      data => {
-        this.categories = data["result"];
-        // this.categoryList = data["result"];
-        // console.log(data);
-      },
-      error => console.log(error)
-    );
+    const loginToken = this.cookieService.get('login_user_token');
+    if(!loginToken) {
+      this.router.navigate(['/auth']);
+    } else {
+      this.apiService.getCategories().subscribe(
+        data => {
+          this.categories = data["result"];
+          // this.categoryList = data["result"];
+          // console.log(data);
+        },
+        error => console.log(error)
+      ); 
+    }
   }
 
   createCategory(category) {
