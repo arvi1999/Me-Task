@@ -1,1 +1,22 @@
-<p>auth works!</p>
+<form [formGroup] = "authForm" (submit)="saveForm()">
+    <mat-form-field appearance="outline">
+        <mat-label>User Name</mat-label>
+        <input type="text" formControlName = 'username' matInput required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" formControlName = 'password' matInput required>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type = "submit">
+        <!-- <span *ngIf="!registerMode">Login</span>
+        <span *ngIf="registerMode">Register</span> -->
+        Submit
+    </button>
+    <br>
+    <!-- <br>
+    <span *ngIf="!registerMode" (click) = "registerMode = true" [ngStyle]="{'cursor':'pointer'}">Don't have an Account? Register Here</span>
+    <span *ngIf="registerMode" (click) = "registerMode = false" [ngStyle]="{'cursor':'pointer'}">Already have an Account? Login Here</span> -->
+</form>
+

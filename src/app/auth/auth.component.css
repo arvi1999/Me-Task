@@ -1,0 +1,15 @@
+form {
+    text-align: center;
+}
+
+mat-form-field, input, textarea {
+    width: 25%;
+    font-size: 1em;
+    margin: 8px;
+    padding: 10px;
+}
+
+button {
+    width: 15%;
+    margin-top: 20px;
+}

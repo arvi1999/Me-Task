@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
+import { ApiService } from '../api.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+
+interface TokenObj {
+  token: string;
+}
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +15,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService,
+              private cookieService: CookieService,
+              private router: Router          
+    ) { }
 
   ngOnInit(): void {
+  }
+
+  authForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl('')
+  });
+
+  saveForm() {
+    this.apiService.loginUser(this.authForm.value.username, this.authForm.value.password).subscribe(
+      (token: TokenObj) => {
+        this.cookieService.set("login_user_token", token.token);
+        this.cookieService.set("login_user_name", this.authForm.value.username);
+        this.router.navigate(['/todo']);
+      },
+      error => console.log(error)
+    );
   }
 
 }
