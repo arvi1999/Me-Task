@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { faTasks, faThumbtack, faEdit, faTrash, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormControlName } from '@angular/forms';
+import { compileDirectiveFromMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-item-list',
@@ -24,6 +25,8 @@ export class ItemListComponent implements OnInit {
 
   @Output() addItem = new EventEmitter();
 
+  @Output() deletedCategory = new EventEmitter();
+
   categoryForm = new FormGroup({
     name : new FormControl('')
   });
@@ -41,9 +44,27 @@ export class ItemListComponent implements OnInit {
     
   }
 
+  formDisable() {
+    if(this.categoryForm.value.name.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   newCategory() {
     this.apiService.createCategory(this.categoryForm.value.name).subscribe(
       result => this.createdCategory.emit(result["result"]),
+      error => console.log(error)
+    );
+    this.categoryForm = new FormGroup({
+      name: new FormControl('')
+    });
+  }
+
+  deleteCategory(id:number) {
+    this.apiService.deleteCategory(id).subscribe(
+      result => this.deletedCategory.emit(id),
       error => console.log(error)
     );
   }
@@ -72,9 +93,11 @@ export class ItemListComponent implements OnInit {
   deleteItem(item) {
     console.log("delete function called...");
     this.apiService.deleteItem(item.id).subscribe(
-      result => console.log(result),
+      result => this.category_items = this.category_items.filter(it => it.id !== item.id),
       error => console.log(error)
     );
   }
 
 }
+
+// this.movies = this.movies.filter(mov => mov.id !== movie.id),

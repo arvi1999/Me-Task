@@ -35,6 +35,14 @@ export class TodoComponent implements OnInit {
     this.editedItem = null;
   }
 
+  deleteCategory(category) {
+    console.log("categody deleted", category);
+    this.categories = this.categories.filter(cat => cat.id !== category);
+    this.selectCategory = null;
+    this.selectedItem = null;
+    this.editedItem = null;
+  }
+
   selectItem(item) {
     this.selectedItem = item;
     this.editedItem = null;

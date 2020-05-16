@@ -12,7 +12,7 @@
                 <mat-label>Category Name</mat-label>
                 <input type="text" formControlName="name" matInput>
             </mat-form-field>
-            <button mat-raised-button color="primary" [ngStyle] = "{'margin-left':'13px'}" type="submit" >Add</button>
+            <button mat-raised-button color="primary" [ngStyle] = "{'margin-left':'13px'}" type="submit" [disabled]="formDisable()">Add</button>
         </form>
       </mat-expansion-panel>
     <mat-expansion-panel *ngFor="let category of categories" [ngStyle] = "{'width':'75%','margin-left':'50px'}">
@@ -24,7 +24,7 @@
         <mat-list>
             <div mat-subheader>
                 <button mat-raised-button color="warn" [ngStyle] = "{'width':'47%'}">Edit Category</button>
-                <button mat-raised-button color="warn" [ngStyle] = "{'width':'47%','margin-left':'10px'}">Delete Category</button>
+                <button mat-raised-button color="warn" [ngStyle] = "{'width':'47%','margin-left':'10px'}" (click)="deleteCategory(category.id)">Delete Category</button>
             </div>
             <mat-list-item *ngFor="let item of category_items">
                 <div mat-line (click)="itemDetails(item, item.completed)" [ngClass]="{'strikethrough':item.completed === 'Done'}"><fa-icon [icon]="faArrowRight" [ngStyle]="{'margin-right':'10px'}"></fa-icon>{{item.title}} </div>

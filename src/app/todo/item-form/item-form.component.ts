@@ -81,8 +81,6 @@ export class ItemFormComponent implements OnInit {
         error => console.log(error)
       );
     }
-    
-    
   }
 
 }
