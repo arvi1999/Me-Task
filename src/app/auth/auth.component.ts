@@ -27,12 +27,28 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  registerMode = false;
+
   authForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
   });
 
   saveForm() {
+    if(!this.registerMode) {
+      this.loginUser();
+    } else {
+      this.apiService.registerUser(this.authForm.value.username, this.authForm.value.password).subscribe(
+        result => {
+          this.loginUser();
+          this.router.navigate(['/todo']);
+        },
+        error => console.log(error)
+      );
+    }
+  }
+
+  loginUser() {
     this.apiService.loginUser(this.authForm.value.username, this.authForm.value.password).subscribe(
       (token: TokenObj) => {
         this.cookieService.set("login_user_token", token.token);

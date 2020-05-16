@@ -10,13 +10,12 @@
     </mat-form-field>
     <br>
     <button mat-raised-button color="primary" type = "submit">
-        <!-- <span *ngIf="!registerMode">Login</span>
-        <span *ngIf="registerMode">Register</span> -->
-        Submit
+        <span *ngIf="!registerMode">Login</span>
+        <span *ngIf="registerMode">Register</span>
     </button>
     <br>
-    <!-- <br>
+    <br>
     <span *ngIf="!registerMode" (click) = "registerMode = true" [ngStyle]="{'cursor':'pointer'}">Don't have an Account? Register Here</span>
-    <span *ngIf="registerMode" (click) = "registerMode = false" [ngStyle]="{'cursor':'pointer'}">Already have an Account? Login Here</span> -->
+    <span *ngIf="registerMode" (click) = "registerMode = false" [ngStyle]="{'cursor':'pointer'}">Already have an Account? Login Here</span>
 </form>
 
