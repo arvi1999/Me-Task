@@ -73,7 +73,7 @@ export class ApiService {
 
   registerUser(username:string, password:string) {
     const body =  JSON.stringify({'username':username, 'password':password});
-    return this.httpClient.post(`${this.baseUrl}/todoapi/user/`, body, {headers: this.headers});
+    return this.httpClient.post(`${this.baseUrl}todoapi/user/`, body, {headers: this.headers});
   }
 
   getAuthHeader() {
